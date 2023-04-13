@@ -8,6 +8,7 @@ from botsetting import keyboards as kb, stub_text
 from labs.lab1 import compare_two_numbers
 from botsetting.config import TOKEN
 from botsetting.utils import TestStates
+from labs.lab3 import send_curl
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot, storage=MemoryStorage())
@@ -52,8 +53,16 @@ async def process_help_command(message: types.Message):
 
 @dp.message_handler(state=TestStates.TEST_STATE_0, commands=['lab3'])
 async def process_help_command(message: types.Message):
-    await message.reply(stub_text.LAB_3)
+    await set_state(message, 3)
+    await message.reply(stub_text.LAB_3,  reply_markup=kb.lab_3_kb)
     print(stub_text.LAB_3)
+
+
+@dp.message_handler(state=TestStates.TEST_STATE_3)
+async def send_gpt(message: types.Message):
+    await message.reply(stub_text.LAB_3_WAIT, reply_markup=kb.menu_kb)
+    await set_state(message, 0)
+    await message.reply(send_curl.send_request(message.text))
 
 
 async def set_state(message: types.Message, state: int):
