@@ -1,1 +1,13 @@
-/botLabs/venv/Lib/site-packages/pip/_internal/operations/build/wheel.py
+# Default ignored files
+/shelf/
+/workspace.xml
+/modules.xml
+/misc.xml
+/inspectionProfiles/profiles_settings.xml
+/inspectionProfiles/Project_Default.xml
+/vcs.xml
+/botLabs.iml
+/botLabs/botsetting/__pycache__/
+botLabs/venv/
+/.gitignore
+*.pyc
